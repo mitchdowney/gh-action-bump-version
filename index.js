@@ -38,8 +38,8 @@ Toolkit.run(async tools => {
     // set git user
     await tools.runInWorkspace('git', ['config', 'user.name', `"${process.env.GITHUB_USER || 'Automated Version Bump'}"`])
     await tools.runInWorkspace('git', ['config', 'user.email', `"${process.env.GITHUB_EMAIL || 'gh-action-bump-version@users.noreply.github.com'}"`])
-
-    const currentBranch = /refs\/[a-zA-Z]+\/(.*)/.exec(process.env.GITHUB_REF)[1]
+    console.log('github head ref:', process.env.GITHUB_HEAD_REF, process.env.GITHUB_REF)
+    const currentBranch = /refs\/[a-zA-Z]+\/(.*)/.exec(process.env.GITHUB_HEAD_REF)[1]
     console.log('currentBranch:', currentBranch)
 
     // do it in the current checked out github branch (DETACHED HEAD)
